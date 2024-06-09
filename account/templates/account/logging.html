@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+</head>
+<body>
+
+    <form action="{% url "account:logging" %}" method="post">
+        {% csrf_token %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li{% if message.tag %} class="{{message.tag}}"{% endif %}>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% for i in log %}
+            
+            <p>{{i.label}}</p>
+            <p>{{i}}</p>
+
+        {% endfor %}
+        <button>LogIn</button>
+        <a href="{% url "account:signup" %}">SignUp</a>
+    </form>
+    
+</body>
+</html>

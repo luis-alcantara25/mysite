@@ -1,0 +1,15 @@
+{% extends "product/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+{% endif %}
+
+{% for i in book %}
+    <li>{{i}}</li>
+{% endfor %}
+
+{% endblock content %}

@@ -4,4 +4,4 @@ from .models import Book
 class FormBook(ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'tagline', 'gender', 'rating']
+        fields = ['img_book', 'title', 'tagline', 'gender', 'rating']

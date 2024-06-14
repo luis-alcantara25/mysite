@@ -8,7 +8,7 @@
         {% endfor %}
     {% endif %}
 
-    <form action="{% url "product:form_book" %}" method='POST'>
+    <form action="{% url "product:form_book" %}" method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
         {% for product in form %}
             <p>{{product.label}}</p>

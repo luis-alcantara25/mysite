@@ -22,11 +22,12 @@ def signup(request):
                     messages.success(request, f'Tu cuenta ya fue creada, puedes iniciar session.')
                     return redirect('account:logging')
                 else:
+                    print(request.POST)
                     messages.error(request, 'Your data is invalid')
                     return render(request, 'account/signup.html', {'forms':UserForm})
             else:
                 messages.error(request, "The passwords dind't match")
-                return render(request, 'account.signup.html', {'forms':UserForm})
+                return render(request, 'account/signup.html', {'forms':UserForm})
             
 #Logging page
 def logging(request):
@@ -48,7 +49,7 @@ def logging(request):
                         messages.success(request, f'Bienvenido {username}')
                         return redirect('product:home')
                     else:
-                        messages.error(request, 'The username or password is incorrect')
+                        messages.error(request, 'The Username or Password is incorrect')
                         return render(request, 'account/logging.html', {'log':AuthenticationForm})
                 else:
                     messages.error(request, 'The data is invalid')

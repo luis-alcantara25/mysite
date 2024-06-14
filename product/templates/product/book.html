@@ -8,7 +8,7 @@
 </head>
 <body>
     {% block content %}
-       <form action="{% url "product:book_page" books.id %}" method="post">
+       <form action="{% url "product:book_update" books.id %}" method="post">
         {% csrf_token %}
             {% for fm in form %}
                 {{fm.label}}

@@ -10,30 +10,39 @@ from django.contrib.auth.models import User
 
 @login_required
 def home_page(request):
-    books = Book.objects.filter(rating__lte = 5)
+    books = Book.objects.order_by('pub_date')
     return render(request, 'product/home.html', {'books':books})
+
+
+#Book page
+@login_required
+def book_page(request, pk):
+    book = Book.objects.get(id=pk)
+    return render(request, 'product/book_page.html', {'book':book})
         
     
 #Form for books
+@login_required
 def form_book(request):
     if request.method =='GET':
         form = FormBook()
         return render(request, 'product/form_book.html', {'form':form})
     else:
-        form = FormBook(request.POST)
-        if form.is_valid:
-            fm = form.save(commit=False)
-            fm.author = request.user
-            fm.save()
-            messages.success(request, 'Your book has been saved susscessfully')
-            return redirect('product:home')
-        else:
-            messages.error(request, 'The data for this book is invalid')
-            return redirect('product:form_book')
+        if request.method == 'POST':
+            form = FormBook(request.POST, request.FILES)
+            if form.is_valid():
+                fm = form.save(commit=False)
+                fm.author = request.user
+                fm.save()
+                messages.success(request, 'Your book has been saved susscessfully')
+                return redirect('product:home')
+            else:
+                messages.error(request, 'The data for this book is invalid')
+                return redirect('product:form_book')
         
 #Update book
-def book_page(request, pk):
-    
+@login_required
+def book_update(request, pk):
     book = Book.objects.get(id=pk)#get the Book from the database with its id.
     if request.method == 'POST':
         form = FormBook(request.POST, instance=book)# to pre-populate the data with ths instance value
@@ -48,7 +57,6 @@ def book_page(request, pk):
     return render(request, 'product/book.html', {'form':form, 'books':book})
 
 #delete book
-
 def delete_book(request, pk):
     book = get_object_or_404(Book, id=pk)
     book.delete()

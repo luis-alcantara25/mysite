@@ -2,14 +2,25 @@
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        {{message}}
-    {% endfor %}
-{% endif %}
+<div class="container-sm m-0">
 
-{% for i in book %}
-    <li>{{i}}</li>
-{% endfor %}
+        <div class="row">
+            <div class="col-sm-3">
+                <h1>Hello</h1>
+            </div>
+        </div>
+         <div class="row p-2">
+            {% for book in books %}
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title border-bottom">{{book.title}}-{{book.author}}</h1>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veritatis, adipisci rem voluptatibus eligendi mollitia velit quidem deleniti ducimus vero quis incidunt fugit. Nam magni quibusdam, iste, esse repellendus voluptas laboriosam nostrum minus assumenda non, earum temporibus consequuntur? Sunt, velit. Eos aliquid cupiditate quisquam sed vel quibusdam blanditiis in aspernatur dolore tempore itaque quia iste nihil ex officiis inventore pariatur, placeat sunt adipisci amet minus voluptatibus, dignissimos a. Fugiat inventore maiores voluptatem aut perferendis placeat optio iusto voluptatibus deleniti, quasi, harum ipsa libero, est non saepe aliquam excepturi vitae assumenda reprehenderit itaque? Officia dicta aut maiores temporibus et in aperiam!</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+</div>
 
 {% endblock content %}

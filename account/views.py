@@ -74,6 +74,6 @@ def email_check(user):
 def profile(request):
     if request.user.has_perm('product.view_book'):
         book = Book.objects.filter(author=request.user)
-        return render(request, 'account/profile.html', {'book':book})
+        return render(request, 'account/profile.html', {'books':book})
     else:
         return HttpResponse('The User has not perm')

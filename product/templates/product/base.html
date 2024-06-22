@@ -8,13 +8,14 @@
     {% block title %}<title>Home</title>{% endblock title %}
     {% block icon %} 
       <link rel="icon" href="{% static "img/book-svgrepo-com.svg" %}">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {% endblock icon %}
 </head>
 <body class="bg-light"> 
     
     <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
-        <div class="container-fluid bg-light shadow p-3 mb-3">
-          <img src="{% static 'img/book_logo.png' %}" alt="Logo" style="max_width:50px; height:50px;">
+        <div class="container-fluid bg-light p-3 mb-3 border-bottom">
+          <a href="{% url "product:home" %}"><img src="{% static 'img/book_logo.png' %}" alt="Logo" style="max_width:50px; height:50px;"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

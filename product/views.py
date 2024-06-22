@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 @login_required
 def home_page(request):
-    books = Book.objects.order_by('pub_date')
+    books = Book.objects.order_by('-pub_date')
     return render(request, 'product/home.html', {'books':books})
 
 
@@ -51,7 +51,7 @@ def book_update(request, pk):
             return redirect('product:home')
         else:
             messages.error(request, 'The data is invalid')
-            return render(request, 'product/book.html', {'books',form})
+            return render(request, 'product/book.html', {'books':form})
     else:
         form = FormBook(instance=book)
     return render(request, 'product/book.html', {'form':form, 'books':book})

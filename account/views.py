@@ -5,9 +5,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from product.models import Book
 from django.contrib.auth.decorators import permission_required, login_required, user_passes_test
+from .models import Profile
 
 
-# Create your views here.
+# Views Creations
 
 #SignUp User
 def signup(request):
@@ -33,7 +34,6 @@ def signup(request):
 def logging(request):
     if request.user.is_authenticated:
         return redirect('product:home')
-    
     else:
         if request.method == 'GET':
             return render(request, 'account/logging.html', {'log':AuthenticationForm})
@@ -74,6 +74,7 @@ def email_check(user):
 def profile(request):
     if request.user.has_perm('product.view_book'):
         book = Book.objects.filter(author=request.user)
-        return render(request, 'account/profile.html', {'books':book})
+        profile = Profile.objects.filter(user=request.user)
+        return render(request, 'account/profile.html', {'books':book, 'users':profile})
     else:
         return HttpResponse('The User has not perm')

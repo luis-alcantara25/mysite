@@ -1,24 +1,25 @@
 {% extends "product/base.html" %}
+{% load static %}
 
 {% block content %}
 
-<div class="container-sm m-0">
-
-        <div class="row">
-            <div class="col-sm-3">
-                <h1>Hello</h1>
+<div class="container-fluid m-0 text-center">
+        <div class="row p-2 ">
+                <div class="col-2 border-end border-2">
+                    {% for user in users %}
+                        <a href=""><img src={{user.photo.url}} alt="Default" class="rounded-circle" style="width:200px; height:200px;"></a>
+                        <h2>{{user.user.first_name}}</h2>
+                    {% endfor %}
             </div>
-        </div>
-         <div class="row p-2">
             {% for book in books %}
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
                             <h1 class="card-title border-bottom">{{book.title}}-{{book.author}}</h1>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veritatis, adipisci rem voluptatibus eligendi mollitia velit quidem deleniti ducimus vero quis incidunt fugit. Nam magni quibusdam, iste, esse repellendus voluptas laboriosam nostrum minus assumenda non, earum temporibus consequuntur? Sunt, velit. Eos aliquid cupiditate quisquam sed vel quibusdam blanditiis in aspernatur dolore tempore itaque quia iste nihil ex officiis inventore pariatur, placeat sunt adipisci amet minus voluptatibus, dignissimos a. Fugiat inventore maiores voluptatem aut perferendis placeat optio iusto voluptatibus deleniti, quasi, harum ipsa libero, est non saepe aliquam excepturi vitae assumenda reprehenderit itaque? Officia dicta aut maiores temporibus et in aperiam!</p>
                         </div>
-                    </div>
                 </div>
+                    </div>
             {% endfor %}
         </div>
 </div>
